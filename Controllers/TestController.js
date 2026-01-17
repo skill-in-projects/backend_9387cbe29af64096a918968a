@@ -44,7 +44,7 @@ const getAll = async (req, res, next) => {
     
     // Set search_path to public schema (required because isolated role has restricted search_path)
     await pool.query('SET search_path = public, "$user"');
-    const result = await pool.query('SELECT "Id", "Name" FROM "TestProjects" ORDER BY "Id"');
+    result = await pool.query('SELECT "Id", "Name" FROM "TestProjects" ORDER BY "Id"');
     res.json(result.rows);
     // Do NOT catch generic errors - let them bubble up to global error handler middleware
 };
