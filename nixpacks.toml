@@ -1,0 +1,19 @@
+# Nixpacks configuration for Railway - Node.js/Express Backend
+# Backend files are at root level
+
+[phases.setup]
+nixPkgs = { node = "18" }
+
+[phases.install]
+cmds = [
+  "find . -name '*.js' -type f ! -path './node_modules/*' -exec node --check {} \; || (echo 'Syntax errors found in JavaScript files!' && exit 1)",
+  "npm install"
+]
+
+[phases.build]
+cmds = [
+  "echo 'Node.js syntax validation passed'"
+]
+
+[start]
+cmd = "node app.js"
